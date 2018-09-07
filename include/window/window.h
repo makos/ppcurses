@@ -8,15 +8,22 @@
 
 namespace ppc {
 
+void DeleteRawWindow(WINDOW *win);
+
 class Window {
   friend class Application;
 
  public:
   Window(Point pos, Point size);
 
-  // void AddControl(Control &control);
   template <class T>
   void AddWidget(T control);
+
+  void SetPosition(Point t_position);
+  Point Position() { return position; }
+
+  void SetSize(Point t_size);
+  Point Size() { return size; }
 
  protected:
   void Draw();
@@ -27,7 +34,10 @@ class Window {
   Point size;
 
  private:
-  std::unique_ptr<WINDOW> curses_window_;
+  WINDOW *RawPtr() { return curses_window_.get(); }
+
+ private:
+  std::unique_ptr<WINDOW, decltype(&DeleteRawWindow)> curses_window_;
   std::vector<std::string> widgets_;
 };
 
