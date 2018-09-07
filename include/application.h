@@ -5,6 +5,10 @@
 #include "ncurses_forward_decl.h"
 #include "window/window.h"
 
+#define PPCURSES_VERSION_MAJOR 0
+#define PPCURSES_VERSION_MINOR 1
+#define PPCURSES_VERSION_PATCH 0
+
 namespace ppc {
 
 enum Focus { Canvas = -1 };
