@@ -99,15 +99,14 @@ Controls (Label, Button etc.) exist at Window level.
 
 # Internal workings
 
-## `class Widget`
-Abstract class every Widget (Label, Button etc.) inherits from.
-### Public methods
-  * `virtual void Draw()`
-
 ## Free functions
 * `RawWindowDeleter(WINDOW *win)` - custom deleter for `unique_ptr<WINDOW>`
 ---
-
+## `class Widget`
+Abstract class every Widget (Label, Button etc.) inherits from.
+### Public methods
+* `virtual void Draw()`
+---
 ## `enum class EventType`
 Describes an internal event, such as closing current window or quitting the application.
 * `AppExit`
