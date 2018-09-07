@@ -1,8 +1,8 @@
-#ifndef WINDOW_HEADER
-#define WINDOW_HEADER
+#ifndef PPCURSES_WINDOW_WINDOW_HPP_
+#define PPCURSES_WINDOW_WINDOW_HPP_
 #include <string>
 #include <vector>
-#include "util/point.hpp"
+#include "util/point.h"
 
 namespace ppc {
 
@@ -20,4 +20,4 @@ class Window {
 };
 
 }  // namespace ppc
-#endif  // WINDOW_HEADER
+#endif  // PPCURSES_WINDOW_WINDOW_HPP_

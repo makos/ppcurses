@@ -1,5 +1,5 @@
-#ifndef POINT_HEADER
-#define POINT_HEADER
+#ifndef PPCURSES_UTIL_POINT_HPP_
+#define PPCURSES_UTIL_POINT_HPP_
 #include <ostream>
 
 namespace ppc {
@@ -51,4 +51,4 @@ inline std::ostream &operator<<(std::ostream &os, const Point &p) {
   return os;
 }
 }  // namespace ppc
-#endif  // POINT_HEADER
+#endif  // PPCURSES_UTIL_POINT_HPP_

@@ -1,5 +1,6 @@
+#include <curses.h>
 #include <iostream>
-#include "util/point.hpp"
+#include "util/point.h"
 
 int main() {
   ppc::Point p;
