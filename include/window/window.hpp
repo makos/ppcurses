@@ -1,23 +1,23 @@
 #ifndef WINDOW_HEADER
 #define WINDOW_HEADER
-#include "util/point.hpp"
 #include <string>
 #include <vector>
+#include "util/point.hpp"
 
 namespace ppc {
 
-class window {
-  protected:
-    window();
+class Window {
+ protected:
+  Window();
 
-    void add_control(std::string control);
+  void AddControl(std::string control);
 
-  protected:
-    point position;
+ protected:
+  Point position;
 
-  private:
-    std::vector<std::string> m_controls;
+ private:
+  std::vector<std::string> controls_;
 };
 
-} // namespace ppc
-#endif // WINDOW_HEADER
+}  // namespace ppc
+#endif  // WINDOW_HEADER

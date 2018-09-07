@@ -3,8 +3,8 @@
 namespace ppc {
 
 class Screen {
-  public:
+ public:
 };
 
-} // namespace ppc
-#endif // SCREEN_HEADER
+}  // namespace ppc
+#endif  // SCREEN_HEADER

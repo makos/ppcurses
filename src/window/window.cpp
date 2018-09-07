@@ -2,8 +2,8 @@
 
 namespace ppc {
 
-window::window() : position(point()), m_controls() {}
+Window::Window() : position(ppc::Point()), controls_() {}
 
-void window::add_control(std::string control) { m_controls.push_back(control); }
+void Window::AddControl(std::string control) { controls_.push_back(control); }
 
-} // namespace ppc
+}  // namespace ppc
