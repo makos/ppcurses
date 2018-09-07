@@ -8,7 +8,7 @@
 
 namespace ppc {
 
-void DeleteRawWindow(WINDOW *win);
+void RawWindowDeleter(WINDOW *win);
 
 class Window {
   friend class Application;
@@ -37,7 +37,7 @@ class Window {
   inline WINDOW *RawPtr() { return curses_window_.get(); }
 
  private:
-  std::unique_ptr<WINDOW, decltype(&DeleteRawWindow)> curses_window_;
+  std::unique_ptr<WINDOW, decltype(&RawWindowDeleter)> curses_window_;
   std::vector<std::string> widgets_;
 };
 

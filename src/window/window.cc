@@ -8,7 +8,7 @@ namespace ppc {
 Window::Window(Point pos, Point size)
     : position_(pos),
       size_(size),
-      curses_window_(newwin(size.y, size.x, pos.y, pos.x), &DeleteRawWindow),
+      curses_window_(newwin(size.y, size.x, pos.y, pos.x), &RawWindowDeleter),
       widgets_() {}
 
 template <class T>
@@ -25,16 +25,16 @@ void Window::SetPosition(Point t_position) {
 
   wclear(RawPtr());
   position_ = t_position;
-  curses_window_ = std::unique_ptr<WINDOW, decltype(&DeleteRawWindow)>(
-      newwin(size_.y, size_.x, t_position.y, t_position.x), &DeleteRawWindow);
+  curses_window_ = std::unique_ptr<WINDOW, decltype(&RawWindowDeleter)>(
+      newwin(size_.y, size_.x, t_position.y, t_position.x), &RawWindowDeleter);
   box(RawPtr(), 0, 0);
   wrefresh(RawPtr());
 }
 
 void Window::SetSize(Point t_size) {
   wclear(RawPtr());
-  curses_window_ = std::unique_ptr<WINDOW, decltype(&DeleteRawWindow)>(
-      newwin(t_size.y, t_size.x, position_.y, position_.x), &DeleteRawWindow);
+  curses_window_ = std::unique_ptr<WINDOW, decltype(&RawWindowDeleter)>(
+      newwin(t_size.y, t_size.x, position_.y, position_.x), &RawWindowDeleter);
 }
 
 // Protected methods ---------------------------------------------------------
@@ -47,7 +47,7 @@ void Window::Draw() {
 char Window::GetKeyEvents() { return static_cast<char>(wgetch(RawPtr())); }
 
 // Custom deleter
-void DeleteRawWindow(WINDOW *win) {
+void RawWindowDeleter(WINDOW *win) {
   wborder(win, ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ');
   wrefresh(win);
   delwin(win);
