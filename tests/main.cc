@@ -1,16 +1,31 @@
-#include <curses.h>
+// #define CATCH_CONFIG_MAIN
+// #include "catch.h"
+#include <iostream>
 #include "application.h"
-#include "util/point.h"
 #include "window/window.h"
 
+using namespace ppc;
+
 int main() {
-  ppc::Application app;
-  ppc::Window &my_win = app.NewWindow(ppc::Point(7, 7), ppc::Point(10, 10));
-  ppc::Window &my_win2 = app.NewWindow(ppc::Point(19, 10), ppc::Point(5, 5));
+  Application app;
+  auto mywin = app.NewWindow(Point(1, 1), Point(5, 3));
   app.Draw();
   char ch;
   while ((ch = app.GetKeyEvents()) != 'q') {
     app.Draw();
+    switch (ch) {
+      case 'h':
+        mywin->SetPosition(mywin->Position() + Point(-1, 0));
+        break;
+      case 'j':
+        mywin->SetPosition(mywin->Position() + Point(0, 1));
+        break;
+      case 'l':
+        mywin->SetPosition(mywin->Position() + Point(1, 0));
+        break;
+      case 'k':
+        mywin->SetPosition(mywin->Position() + Point(0, -1));
+        break;
+    }
   }
-  return 0;
 }
