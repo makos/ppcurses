@@ -34,7 +34,7 @@ class Window {
   Point size_;
 
  private:
-  WINDOW *RawPtr() { return curses_window_.get(); }
+  inline WINDOW *RawPtr() { return curses_window_.get(); }
 
  private:
   std::unique_ptr<WINDOW, decltype(&DeleteRawWindow)> curses_window_;
