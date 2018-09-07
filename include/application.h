@@ -6,7 +6,7 @@
 #include "window/window.h"
 
 #define PPCURSES_VERSION_MAJOR 0
-#define PPCURSES_VERSION_MINOR 1
+#define PPCURSES_VERSION_MINOR 2
 #define PPCURSES_VERSION_PATCH 0
 
 namespace ppc {
@@ -20,6 +20,7 @@ class Application {
 
   std::shared_ptr<Window> NewWindow(Point pos, Point size);
 
+  // Event GetWindowEvents();
   char GetKeyEvents();
   void Draw();
 

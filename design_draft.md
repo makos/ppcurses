@@ -19,6 +19,7 @@
 ## `namespace ppc`
 Every class and method is inside this namespace.
 
+
 ### Typedefs
 * `typedef void (*callback)()` - interactive Widget callback function pointer type (for Buttons etc.)
 
@@ -33,7 +34,7 @@ be created.
 #### Constructors
 * `Application()`
 #### Public methods
-* `Window &NewWindow(Point position, Point size)`
+* `shared_ptr<Window> NewWindow(Point position, Point size)`
 * `void Draw()`
 * `char GetKeyEvents()` - basically calls `wgetch()` on appropriate Window from ncurses
 * `Event GetWindowEvents()` - not sure about return type for now
@@ -47,9 +48,6 @@ be created.
 * `Point Position()`
 * `void SetSize(Point size)`
 * `Point Size()`
-#### Private members 
-* `Point position`
-* `Point size`
 ---
 ### `class Statusbar : public Window`
 This pseudo-window spans the whole screen horizontally but is only 1 row high.
@@ -105,6 +103,9 @@ Controls (Label, Button etc.) exist at Window level.
 Abstract class every Widget (Label, Button etc.) inherits from.
 ### Public methods
   * `virtual void Draw()`
+
+## Free functions
+* `RawWindowDeleter(WINDOW *win)` - custom deleter for `unique_ptr<WINDOW>`
 ---
 
 ## `enum class EventType`
