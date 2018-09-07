@@ -15,7 +15,10 @@ class Window {
   Window(Point pos, Point size);
 
   // void AddControl(Control &control);
-  void AddControl(std::string control);
+  template <class T>
+  void AddWidget(T control);
+
+ protected:
   void Draw();
   char GetKeyEvents();
 
@@ -25,7 +28,7 @@ class Window {
 
  private:
   std::unique_ptr<WINDOW> curses_window_;
-  std::vector<std::string> controls_;
+  std::vector<std::string> widgets_;
 };
 
 }  // namespace ppc

@@ -10,9 +10,12 @@ Window::Window(Point pos, Point size)
       size(size),
       curses_window_(
           std::unique_ptr<WINDOW>(newwin(size.y, size.x, pos.y, pos.x))),
-      controls_() {}
+      widgets_() {}
 
-void Window::AddControl(std::string control) { controls_.push_back(control); }
+template <class T>
+void Window::AddWidget(T widget) {
+  widgets_.push_back(widget);
+}
 
 void Window::Draw() {
   werase(curses_window_.get());
