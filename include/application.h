@@ -2,9 +2,8 @@
 #define PPCURSES_APPLICATION_H_
 #include <memory>
 #include <vector>
+#include "ncurses_forward_decl.h"
 #include "window/window.h"
-// ncurses
-typedef struct _win WINDOW;
 
 namespace ppc {
 

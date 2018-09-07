@@ -3,9 +3,8 @@
 #include <memory>
 #include <string>
 #include <vector>
+#include "ncurses_forward_decl.h"
 #include "util/point.h"
-
-typedef struct _win WINDOW;
 
 namespace ppc {
 
