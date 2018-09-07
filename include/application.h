@@ -18,7 +18,7 @@ class Application {
   Application();
   ~Application();
 
-  Window &NewWindow(Point pos, Point size);
+  std::shared_ptr<Window> NewWindow(Point pos, Point size);
 
   char GetKeyEvents();
   void Draw();
@@ -26,7 +26,7 @@ class Application {
  private:
   int focus_id_;
   std::unique_ptr<WINDOW> canvas_;
-  std::vector<std::unique_ptr<Window>> windows_;
+  std::vector<std::shared_ptr<Window>> windows_;
 };
 
 }  // namespace ppc
