@@ -1,17 +1,16 @@
 #include <curses.h>
-#include <iostream>
+#include "application.h"
 #include "util/point.h"
+#include "window/window.h"
 
 int main() {
-  ppc::Point p;
-  std::cout << p << std::endl;
-  p += ppc::Point(1, 2);
-  std::cout << p << std::endl;
-  p -= ppc::Point(0, 1);
-  std::cout << p << std::endl;
-  p == ppc::Point(1, 1) ? std::cout << "y" << std::endl
-                        : std::cout << "n" << std::endl;
-  p != ppc::Point(0, 0) ? std::cout << "y" << std::endl
-                        : std::cout << "n" << std::endl;
+  ppc::Application app;
+  ppc::Window &my_win = app.NewWindow(ppc::Point(7, 7), ppc::Point(10, 10));
+  ppc::Window &my_win2 = app.NewWindow(ppc::Point(11, 10), ppc::Point(3, 3));
+  app.Draw();
+  char ch;
+  while ((ch = app.GetKeyEvents()) != 'q') {
+    app.Draw();
+  }
   return 0;
 }
