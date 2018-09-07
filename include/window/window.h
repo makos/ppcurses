@@ -17,21 +17,21 @@ class Window {
   Window(Point pos, Point size);
 
   template <class T>
-  void AddWidget(T control);
+  void AddWidget(T widget);
 
   void SetPosition(Point t_position);
-  Point Position() { return position; }
+  inline Point Position() { return position_; }
 
   void SetSize(Point t_size);
-  Point Size() { return size; }
+  inline Point Size() { return size_; }
 
  protected:
   void Draw();
   char GetKeyEvents();
 
- protected:
-  Point position;
-  Point size;
+ private:
+  Point position_;
+  Point size_;
 
  private:
   WINDOW *RawPtr() { return curses_window_.get(); }
