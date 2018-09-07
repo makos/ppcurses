@@ -126,7 +126,7 @@ int main() {
   Application app; // ncurses initialized here
   Window &win = app.NewWindow(Point(0, 0), Point(16, 10)); // Top left corner, 16x10 cells (x,y)
   Label label(1, 1, "Hello World!");
-  win.AddWidget(label);
+  win.AddWidget<Label>(label);
   app.Draw(); // Call Draw() once before the event loop to render everything at least once
   while (app.GetKeyEvents() != 'q') {
     app.Draw();
