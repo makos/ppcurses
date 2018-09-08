@@ -20,9 +20,9 @@
 Every class and method is inside this namespace.
 
 
-### Typedefs
-* `typedef void (*callback)()` - interactive Widget callback function pointer type (for Buttons etc.)
-
+### Type aliases 
+* `using Callback = void (*)()` - interactive Widget callback function pointer type (for Buttons etc.)
+* `using WindowPtr = std::shared_ptr<Window>`
 ## Application level
 Windows exist at application level. 
 
@@ -43,7 +43,7 @@ be created.
 #### Constructors
 * `Window(Point position, Point size)` 
 #### Public methods
-* `template <class T> void AddWidget(T widget)`
+* `template <class T, class ...Args> void AddWidget(Args... args)`
 * `void SetPosition(Point position)`
 * `Point Position()`
 * `void SetSize(Point size)`
@@ -72,8 +72,8 @@ Controls (Label, Button etc.) exist at Window level.
 ### `class Label : public Widget`
 #### Constructors
 * `Label(Point position, string text)`
-#### Public methods
-* `void Draw() final`
+#### Protected methods
+* `void Draw(Window &win) override`
 #### Public fields
 * `Point position`
 * `string text`
@@ -83,7 +83,8 @@ Controls (Label, Button etc.) exist at Window level.
 * `Button(Point position, string text, callback cb)` - not sure about the function pointer signature yet
 #### Public methods
 * `void Click()`
-* `void Draw() final`
+#### Protected methods
+* `void Draw(Window &win) override`
 #### Public fields
 * `Point position`
 ---
@@ -92,8 +93,9 @@ Controls (Label, Button etc.) exist at Window level.
 * `TextInput(Point position, string label, callback cb)`
 #### Public methods
 * `string Text()` - return what user typed in
-* `void Draw() final`
 * `void Confirm()` - when user presses Enter fire the callback
+#### Protected methods
+* `void Draw(Window &win) override`
 #### Public fields
 * `Point position`
 
@@ -104,7 +106,8 @@ Controls (Label, Button etc.) exist at Window level.
 ---
 ## `class Widget`
 Abstract class every Widget (Label, Button etc.) inherits from.
-### Public methods
+### Protected methods
+* `WINDOW *RawPtr(Window &win)`
 * `virtual void Draw()`
 ---
 ## `enum class EventType`
@@ -114,19 +117,18 @@ Describes an internal event, such as closing current window or quitting the appl
 
 # Examples
 
+As of 0.3.0 (WIP), the following example works 100%.
+
 ```c++
 #include "application.h" 
-#include "window.h"
-#include "point.h"
-#include "label.h"
+#include "widgets/label.h"
 
 using namespace ppc; // or use ppc::Application etc.
 
 int main() {
   Application app; // ncurses initialized here
-  Window &win = app.NewWindow(Point(0, 0), Point(16, 10)); // Top left corner, 16x10 cells (x,y)
-  Label label(1, 1, "Hello World!");
-  win.AddWidget<Label>(label);
+  auto win = app.NewWindow(Point(0, 0), Point(16, 10)); // Top left corner, 16x10 cells (x,y)
+  win.AddWidget<Label>(1, 1, "Hello World!"); // Pass arguments to Label's constructor
   app.Draw(); // Call Draw() once before the event loop to render everything at least once
   while (app.GetKeyEvents() != 'q') {
     app.Draw();
