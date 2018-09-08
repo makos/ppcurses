@@ -11,14 +11,21 @@ namespace ppc {
 // FIXME: hide this deleter from public API
 void RawWindowDeleter(WINDOW *win);
 
+using WidgetPtr = std::shared_ptr<Widget>;
+
 class Window {
   friend class Application;
+  friend class Widget;
 
  public:
   Window(Point pos, Point size);
 
   template <class T, class... Args>
-  void AddWidget(Args... args);
+  void AddWidget(Args... args) {
+    auto widget = std::make_shared<T>(args...);
+    widgets_.push_back(widget);
+    // widgets_.emplace_back(&args...);
+  }
 
   void SetPosition(Point t_position);
   inline Point Position() { return position_; }
@@ -30,8 +37,8 @@ class Window {
   Point position_;
   Point size_;
 
-  std::unique_ptr<WINDOW, decltype(&RawWindowDeleter)> curses_window_;
-  std::vector<Widget> widgets_;
+  std::shared_ptr<WINDOW> curses_window_;
+  std::vector<WidgetPtr> widgets_;
   inline WINDOW *RawPtr() { return curses_window_.get(); }
   void Draw();
   char GetKeyEvents();
