@@ -5,9 +5,10 @@
 #include <vector>
 #include "ncurses_forward_decl.h"
 #include "util/point.h"
+#include "widgets/widget.h"
 
 namespace ppc {
-
+// FIXME: hide this deleter from public API
 void RawWindowDeleter(WINDOW *win);
 
 class Window {
@@ -16,8 +17,8 @@ class Window {
  public:
   Window(Point pos, Point size);
 
-  template <class T>
-  void AddWidget(T widget);
+  template <class T, class... Args>
+  void AddWidget(Args... args);
 
   void SetPosition(Point t_position);
   inline Point Position() { return position_; }
@@ -25,20 +26,15 @@ class Window {
   void SetSize(Point t_size);
   inline Point Size() { return size_; }
 
- protected:
-  void Draw();
-  char GetKeyEvents();
-
  private:
   Point position_;
   Point size_;
 
- private:
-  inline WINDOW *RawPtr() { return curses_window_.get(); }
-
- private:
   std::unique_ptr<WINDOW, decltype(&RawWindowDeleter)> curses_window_;
-  std::vector<std::string> widgets_;
+  std::vector<Widget> widgets_;
+  inline WINDOW *RawPtr() { return curses_window_.get(); }
+  void Draw();
+  char GetKeyEvents();
 };
 
 }  // namespace ppc

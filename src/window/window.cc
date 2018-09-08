@@ -11,9 +11,9 @@ Window::Window(Point pos, Point size)
       curses_window_(newwin(size.y, size.x, pos.y, pos.x), &RawWindowDeleter),
       widgets_() {}
 
-template <class T>
-void Window::AddWidget(T widget) {
-  widgets_.push_back(widget);
+template <class T, class... Args>
+void Window::AddWidget(Args... args) {
+  widgets_.emplace_back(&args...);
 }
 
 // New window needs to be created if we want to move or resize it.
@@ -37,7 +37,7 @@ void Window::SetSize(Point t_size) {
       newwin(t_size.y, t_size.x, position_.y, position_.x), &RawWindowDeleter);
 }
 
-// Protected methods ---------------------------------------------------------
+// Private methods ---------------------------------------------------------
 void Window::Draw() {
   werase(RawPtr());
   box(RawPtr(), 0, 0);
