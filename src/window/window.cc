@@ -11,11 +11,6 @@ Window::Window(Point pos, Point size)
       curses_window_(newwin(size.y, size.x, pos.y, pos.x), &RawWindowDeleter),
       widgets_() {}
 
-template <class T, class... Args>
-void Window::AddWidget(Args... args) {
-  widgets_.emplace_back(&args...);
-}
-
 // New window needs to be created if we want to move or resize it.
 void Window::SetPosition(Point t_position) {
   if (t_position.x < 0 || t_position.x + size_.x > COLS || t_position.y < 0 ||
@@ -23,14 +18,13 @@ void Window::SetPosition(Point t_position) {
     return;
   }
 
-  wclear(RawPtr());
   position_ = t_position;
   curses_window_ = std::unique_ptr<WINDOW, decltype(&RawWindowDeleter)>(
       newwin(size_.y, size_.x, t_position.y, t_position.x), &RawWindowDeleter);
   box(RawPtr(), 0, 0);
-  wrefresh(RawPtr());
 }
 
+// TODO: this method.
 void Window::SetSize(Point t_size) {
   wclear(RawPtr());
   curses_window_ = std::unique_ptr<WINDOW, decltype(&RawWindowDeleter)>(
@@ -40,6 +34,9 @@ void Window::SetSize(Point t_size) {
 // Private methods ---------------------------------------------------------
 void Window::Draw() {
   werase(RawPtr());
+  for (auto &widget : widgets_) {
+    widget->Draw(*this);
+  }
   box(RawPtr(), 0, 0);
   wrefresh(RawPtr());
 }
