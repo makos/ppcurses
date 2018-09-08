@@ -13,12 +13,14 @@ namespace ppc {
 
 enum Focus { Canvas = -1 };
 
+using WindowPtr = std::shared_ptr<Window>;
+
 class Application {
  public:
   Application();
   ~Application();
 
-  std::shared_ptr<Window> NewWindow(Point pos, Point size);
+  WindowPtr NewWindow(Point pos, Point size);
 
   // Event GetWindowEvents();
   char GetKeyEvents();

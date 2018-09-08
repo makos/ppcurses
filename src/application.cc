@@ -11,7 +11,7 @@ Application::Application()
 
 Application::~Application() { endwin(); }
 
-std::shared_ptr<Window> Application::NewWindow(Point pos, Point size) {
+WindowPtr Application::NewWindow(Point pos, Point size) {
   windows_.push_back(std::make_shared<Window>(pos, size));
   focus_id_ = windows_.size() - 1;
   return windows_[windows_.size() - 1];
