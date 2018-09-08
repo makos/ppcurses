@@ -2,7 +2,7 @@
 // #include "catch.h"
 #include <iostream>
 #include "application.h"
-#include "window/window.h"
+// #include "window/window.h"
 
 using namespace ppc;
 
