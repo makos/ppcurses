@@ -1,4 +1,4 @@
-file(GLOB_RECURSE TESTSRC *.cc)
-file(GLOB_RECURSE LIBSRC ${CMAKE_HOME_DIRECTORY}/src/*.cc)
+file(GLOB_RECURSE TESTSRC *.cpp)
+file(GLOB_RECURSE LIBSRC ${CMAKE_HOME_DIRECTORY}/src/*.cpp)
 
 add_executable(tests ${TESTSRC} ${LIBSRC})
