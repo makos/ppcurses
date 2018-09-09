@@ -3,9 +3,9 @@
 #include <memory>
 #include <string>
 #include <vector>
-#include "ncurses_forward_decl.h"
-#include "util/point.h"
-#include "widgets/widget.h"
+#include "ncurses_forward_decl.hpp"
+#include "util/point.hpp"
+#include "widgets/widget.hpp"
 
 namespace ppc {
 // FIXME: hide this deleter from public API
@@ -24,7 +24,6 @@ class Window {
   void AddWidget(Args... args) {
     auto widget = std::make_shared<T>(args...);
     widgets_.push_back(widget);
-    // widgets_.emplace_back(&args...);
   }
 
   void SetPosition(Point t_position);

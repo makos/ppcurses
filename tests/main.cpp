@@ -1,10 +1,10 @@
 // #define CATCH_CONFIG_MAIN
-// #include "catch.h"
+// #include "catch.hpp"
 #include <iostream>
-#include "application.h"
-#include "widgets/label.h"
-#include "window/window.h"
-// #include "window/window.h"
+#include "application.hpp"
+#include "widgets/label.hpp"
+#include "window/window.hpp"
+// #include "window/window.hpp"
 
 using namespace ppc;
 

@@ -1,6 +1,6 @@
 #ifndef PPCURSES_WIDGET_WIDGET_H_
 #define PPCURSES_WIDGET_WIDGET_H_
-#include "ncurses_forward_decl.h"
+#include "ncurses_forward_decl.hpp"
 
 namespace ppc {
 class Window;

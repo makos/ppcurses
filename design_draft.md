@@ -120,8 +120,8 @@ Describes an internal event, such as closing current window or quitting the appl
 As of 0.3.0 (WIP), the following example works 100%.
 
 ```c++
-#include "application.h" 
-#include "widgets/label.h"
+#include "application.hpp" 
+#include "widgets/label.hpp"
 
 using namespace ppc; // or use ppc::Application etc.
 

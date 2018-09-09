@@ -2,8 +2,8 @@
 #define PPCURSES_APPLICATION_H_
 #include <memory>
 #include <vector>
-#include "ncurses_forward_decl.h"
-#include "window/window.h"
+#include "ncurses_forward_decl.hpp"
+#include "window/window.hpp"
 
 #define PPCURSES_VERSION_MAJOR 0
 #define PPCURSES_VERSION_MINOR 2

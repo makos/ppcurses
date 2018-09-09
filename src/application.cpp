@@ -1,5 +1,5 @@
-#include "application.h"
-#include <curses.h>
+#include "application.hpp"
+#include <curses.hpp>
 #include <iostream>
 
 namespace ppc {

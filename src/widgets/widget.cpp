@@ -1,5 +1,5 @@
-#include "widgets/widget.h"
-#include "window/window.h"
+#include "widgets/widget.hpp"
+#include "window/window.hpp"
 
 namespace ppc {
 

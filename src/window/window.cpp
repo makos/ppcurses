@@ -1,5 +1,5 @@
-#include "window/window.h"
-#include <curses.h>
+#include "window/window.hpp"
+#include <curses.hpp>
 #include <iostream>
 
 namespace ppc {

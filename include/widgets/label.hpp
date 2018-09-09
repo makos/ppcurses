@@ -1,8 +1,8 @@
 #ifndef PPCURSES_WIDGETS_LABEL_H_
 #define PPCURSES_WIDGETS_LABEL_H_
 #include <string>
-#include "util/point.h"
-#include "widget.h"
+#include "util/point.hpp"
+#include "widget.hpp"
 
 namespace ppc {
 
