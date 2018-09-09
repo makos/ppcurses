@@ -1,5 +1,5 @@
 #include "widgets/label.hpp"
-#include <curses.hpp>
+#include <curses.h>
 
 namespace ppc {
 
