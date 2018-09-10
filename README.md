@@ -13,6 +13,7 @@ Required:
 * clang `>= 6.0` (tested)
 * On Windows:
   * PDCurses
+
 (I think every Linux distro has ncurses nowadays)
 
 
@@ -21,7 +22,7 @@ git clone https://github.com/makos/ppcurses.git
 cd ppcurses
 mkdir build && cd build
 cmake .. && make all
-cd build/bin && ./tests
+cd bin && ./tests
 ````
 Use vim-style (h,j,k,l) controls to move the window.
 
