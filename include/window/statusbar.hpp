@@ -1,6 +1,7 @@
 #ifndef PPCURSES_WINDOW_STATUSBAR_H_
 #define PPCURSES_WINDOW_STATUSBAR_H_
-#include "label.hpp"
+#include <vector>
+#include "widgets/label.hpp"
 
 namespace ppc {
 
@@ -11,7 +12,7 @@ class Statusbar {
   Statusbar();
   Statusbar(BarPosition pos);
 
-  template <Args... args>
+  template <class... Args>
   void AddLabel(Args... args) {}
 
  private:
