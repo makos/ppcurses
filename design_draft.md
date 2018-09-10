@@ -50,6 +50,7 @@ be created.
 * `Point Size()`
 ---
 ### `class Statusbar : public Window`
+Note: maybe this shouldn't inherit from Window? `AddControl` is inherited but it allows for adding of every control; override maybe?
 This pseudo-window spans the whole screen horizontally but is only 1 row high.
 It can contain only plain text Labels. By default rendered with A_REVERSE attribute on (which reverses colors).
 
@@ -102,9 +103,10 @@ Controls (Label, Button etc.) exist at Window level.
 # Internal workings
 
 ## Free functions
-* `RawWindowDeleter(WINDOW *win)` - custom deleter for `unique_ptr<WINDOW>`
+* `RawWindowDeleter(WINDOW *win)` - custom deleter for `unique_ptr<WINDOW>`. TODO: hide
 ---
 ## `class Widget`
+Note: the `RawPtr()` method seems ugly and I think there's a better way to do this, but can't find one
 Abstract class every Widget (Label, Button etc.) inherits from.
 ### Protected methods
 * `WINDOW *RawPtr(Window &win)`
